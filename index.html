@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Wei — AI Chatbot</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <script defer src="api-key.js"></script>
+  <script defer src="apices.js"></script>
   <style>
     body {
       margin: 0;
@@ -81,10 +81,10 @@
     let HF_API_KEY;
 
     window.addEventListener("DOMContentLoaded", () => {
-      HF_API_KEY = window.HF_API_KEY;
+      HF_API_KEY = getWeiKey();
 
       if (!HF_API_KEY) {
-        addBotMessage("⚠️ API key missing. Please check deployment.");
+        addBotMessage("⚠️ API key missing. Go to <a href='secret.html'>secret.html</a> to set it.");
         document.getElementById('sendBtn').disabled = true;
       }
     });
@@ -102,7 +102,7 @@
       const messagesDiv = document.getElementById("messages");
       const div = document.createElement("div");
       div.className = "message bot";
-      div.textContent = text;
+      div.innerHTML = text; // Allow HTML (e.g., link)
       messagesDiv.appendChild(div);
       messagesDiv.scrollTop = messagesDiv.scrollHeight;
     }
